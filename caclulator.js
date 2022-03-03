@@ -1,6 +1,7 @@
 const numberElements = document.getElementsByClassName('calc_number');
 const signElements = document.getElementsByClassName('calc_sign');
 const result = document.getElementById('result');
+const resultsList = document.getElementById('results');
 let firstInput = true;
 
 // for(let i=0; i < numberElements.length; i++ ) {
@@ -30,19 +31,38 @@ for(const signElement of signElements ) {
 
 // }
 
+function buttonListener(button) {
+    if(button.innerText == '=') {
+        calculate();
+    } else {
+        display(button.innerText);
+    }
+}
+
 
 function clearResult() {
     result.innerText = '';
 }
 
 function display(value) {
-    result.innerText += value
-}
-
-function buttonListener(button) {
     if(firstInput) {
         clearResult();
         firstInput = false;
     } 
-    display(button.innerText)
+    result.innerText += value;
+}
+
+
+function calculate() {
+    let res = eval(result.innerText);
+    display('=' + res);
+    firstInput=true;
+    displayResults(result.innerText)
+}
+
+function displayResults(value) {
+    const listItem = document.createElement('li')
+    listItem.innerText = value;
+    resultsList.appendChild(listItem);
+
 }

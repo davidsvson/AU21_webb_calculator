@@ -48,3 +48,12 @@
     transform: translate3d(3px, 3px, 0px);
 }
 
+#result_block {
+    display: block;
+    position: absolute;
+    background-color: azure;
+    right: 30px;
+    width: 300px;
+    height: 500px;
+}
+
